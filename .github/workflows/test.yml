@@ -68,6 +68,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
+      - name: Install Trivy system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsqlite3-dev
+          # You might also add other general dev libs if needed:
+          # sudo apt-get install -y build-essential libssl-dev zlib1g-dev libffi-dev
+          
       - name: Build image
         run: docker build -t app:test .
       
